@@ -1,3 +1,7 @@
 # Ignore artifacts:
 build
 coverage
+# i dont wanna prettify below files as well
+tsconfig.json
+package.json
+package-lock.json

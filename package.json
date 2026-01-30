@@ -1,39 +1,42 @@
 {
-  "name": "auth-service",
-  "version": "1.0.0",
-  "description": "The user management service",
-  "homepage": "https://github.com/codeWithNithin/mern-auth-service#readme",
-  "bugs": {
-    "url": "https://github.com/codeWithNithin/mern-auth-service/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/codeWithNithin/mern-auth-service.git"
-  },
-  "license": "ISC",
-  "author": "Nithin kumar",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "dev": "node src/index.js",
-    "format:fix": "prettier . --write",
-    "format:check": "prettier . --check",
-    "lint:fix": "eslint . --fix",
-    "lint:check": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "@types/node": "^25.1.0",
-    "eslint": "^9.39.2",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "prettier": "3.8.1",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.54.0"
-  },
-  "lint-staged": {
-    "*.ts": ["npm run format:fix", "npm run lint:fix"]
-  }
+    "name": "auth-service",
+    "version": "1.0.0",
+    "description": "The user management service",
+    "homepage": "https://github.com/codeWithNithin/mern-auth-service#readme",
+    "bugs": {
+        "url": "https://github.com/codeWithNithin/mern-auth-service/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/codeWithNithin/mern-auth-service.git"
+    },
+    "license": "ISC",
+    "author": "Nithin kumar",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "dev": "node src/index.js",
+        "format:fix": "prettier . --write",
+        "format:check": "prettier . --check",
+        "lint:fix": "eslint . --fix",
+        "lint:check": "eslint .",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepare": "husky"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.2",
+        "@types/node": "^25.1.0",
+        "eslint": "^9.39.2",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.2.7",
+        "prettier": "3.8.1",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.54.0"
+    },
+    "lint-staged": {
+        "*.ts": [
+            "npm run format:fix",
+            "npm run lint:fix"
+        ]
+    }
 }
