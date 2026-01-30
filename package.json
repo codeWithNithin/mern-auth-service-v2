@@ -28,8 +28,12 @@
     "@types/node": "^25.1.0",
     "eslint": "^9.39.2",
     "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "3.8.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.54.0"
+  },
+  "lint-staged": {
+    "*.ts": ["npm run format:fix", "npm run lint:fix"]
   }
 }
