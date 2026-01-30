@@ -13,6 +13,10 @@ export default defineConfig(
                 projectService: true,
             },
         },
+        rules: {
+            "no-console": "off",
+            "dot-notation": "error",
+        },
     },
     {
         ignores: ["dist", "node_modules", "eslint.config.mjs"],

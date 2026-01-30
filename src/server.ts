@@ -1,6 +1,13 @@
 function welcome(name: string) {
-  return `Welcome ${name}`;
+    const user = {
+        name: 'Nithin',
+        age: 20,
+    };
+
+    const result = user.name;
+
+    console.log(result);
+    return `Welcome ${name}`;
 }
 
-welcome("Nithin")
-
+welcome('Nithin');
