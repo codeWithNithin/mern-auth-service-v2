@@ -1,10 +1,14 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, {
+    type NextFunction,
+    type Request,
+    type Response,
+} from 'express';
 import logger from './config/logger.js';
 import type { HttpError } from 'http-errors';
 
 const app = express();
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello world !');
 });
 

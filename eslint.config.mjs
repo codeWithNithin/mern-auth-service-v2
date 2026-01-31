@@ -16,9 +16,18 @@ export default defineConfig(
         rules: {
             'no-console': 'off',
             'dot-notation': 'error',
+             '@typescript-eslint/no-unsafe-assignment': 'off',
         },
     },
     {
-        ignores: ['dist', 'node_modules', 'eslint.config.mjs'],
+        ignores: [
+            'dist',
+            'node_modules',
+            'eslint.config.mjs',
+            'tsconfig.json',
+            'vitest.config.ts',
+            'tsconfig.vitest.json',
+            '*.spec.ts',
+        ],
     },
 );
