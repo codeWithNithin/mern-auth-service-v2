@@ -5,12 +5,14 @@ import express, {
 } from 'express';
 import logger from './config/logger.js';
 import type { HttpError } from 'http-errors';
+import authRouter from './routes/auth.js';
 
 const app = express();
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello world !');
-});
+app.use(express.json());
+
+// router middleware
+app.use('/auth', authRouter);
 
 /**
  * Global Error handler
