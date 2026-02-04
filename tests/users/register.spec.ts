@@ -5,7 +5,7 @@ import app from '../../src/app';
 describe('POST /auth/register', () => {
     describe('given all fields', () => {
         it('should return 201 status code', async () => {
-            //   APPEND
+            //   ARRANGE
             const userData = {
                 firstName: 'nithin',
                 lastName: 'Kumar',
@@ -22,7 +22,7 @@ describe('POST /auth/register', () => {
         });
 
         it('should return json value', async () => {
-            //   APPEND
+            //   ARRANGE
             const userData = {
                 firstName: 'nithin',
                 lastName: 'Kumar',
@@ -39,5 +39,23 @@ describe('POST /auth/register', () => {
                 expect.stringContaining('json'),
             );
         });
+
+        it('should persist user in database', async () => {
+            //   ARRANGE
+            const userData = {
+                firstName: 'nithin',
+                lastName: 'Kumar',
+                email: 'example@gmail.com',
+                password: 'secret',
+            };
+            // ACT
+            const response = await request(app)
+                .post('/auth/register')
+                .send(userData);
+
+            // ASSERT
+        });
     });
+
+    describe.skip('missing given fields', () => {});
 });
