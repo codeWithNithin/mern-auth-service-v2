@@ -1,9 +1,15 @@
-import { Router } from 'express';
+import {
+    Router,
+    type NextFunction,
+    type Response,
+    type Request,
+} from 'express';
 import AuthController from '../controllers/AuthController.js';
 import UserService from '../services/UserService.js';
 import { AppDataSource } from '../config/data-source.js';
 import { User } from '../entity/User.js';
 import logger from '../config/logger.js';
+import registerValidator from '../validators/registerValidator.js';
 
 const router = Router();
 
@@ -16,8 +22,11 @@ const authController = new AuthController(userService, logger);
  * @returns 201 with user id
  * @access public
  */
-router.post('/register', (req, res, next) =>
-    authController.register(req, res, next),
+router.post(
+    '/register',
+    registerValidator,
+    (req: Request, res: Response, next: NextFunction) =>
+        authController.register(req, res, next),
 );
 
 export default router;

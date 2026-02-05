@@ -2,6 +2,8 @@ import type { Response, NextFunction } from 'express';
 import type { RegisterUserRequest } from '../types/index.js';
 import type UserService from '../services/UserService.js';
 import type { Logger } from 'winston';
+import { Roles } from '../constants/index.js';
+import { validationResult } from 'express-validator';
 
 export default class AuthController {
     constructor(
@@ -17,6 +19,13 @@ export default class AuthController {
         // 1. ge the requst body from client
         const { firstName, lastName, email, password } = req.body;
 
+        const error = validationResult(req);
+
+        if (!error.isEmpty()) {
+            res.status(400).json({ errors: error.array() });
+            return;
+        }
+
         this.logger.debug('New request to register a user', {
             firstName,
             lastName,
@@ -30,6 +39,7 @@ export default class AuthController {
                 lastName,
                 email,
                 password,
+                role: Roles.CUSTOMER,
             });
 
             this.logger.info('User created successfully', {

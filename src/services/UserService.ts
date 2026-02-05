@@ -2,11 +2,16 @@ import createHttpError from 'http-errors';
 import type { UserData } from '../types/index.js';
 import type { User } from '../entity/User.js';
 import type { Repository } from 'typeorm';
+import bcrypt from 'bcryptjs';
 
 export default class UserService {
     constructor(private userRepository: Repository<User>) {}
 
-    async create({ firstName, lastName, email, password }: UserData) {
+    async create({ firstName, lastName, email, password, role }: UserData) {
+        const salt = 10;
+
+        const hashedPassword = await bcrypt.hash(password, salt);
+
         // 1. find if user already exists
         const user = await this.userRepository.findOne({
             where: {
@@ -29,7 +34,8 @@ export default class UserService {
                 firstName,
                 lastName,
                 email,
-                password,
+                password: hashedPassword,
+                role,
             });
         } catch {
             const err = createHttpError(
