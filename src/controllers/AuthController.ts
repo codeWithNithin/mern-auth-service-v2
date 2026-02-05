@@ -1,9 +1,13 @@
 import type { Response, NextFunction } from 'express';
 import type { RegisterUserRequest } from '../types/index.js';
 import type UserService from '../services/UserService.js';
+import type { Logger } from 'winston';
 
 export default class AuthController {
-    constructor(private userService: UserService) {}
+    constructor(
+        private userService: UserService,
+        private logger: Logger,
+    ) {}
 
     async register(
         req: RegisterUserRequest,
@@ -13,16 +17,29 @@ export default class AuthController {
         // 1. ge the requst body from client
         const { firstName, lastName, email, password } = req.body;
 
-        const response = await this.userService.create({
+        this.logger.debug('New request to register a user', {
             firstName,
             lastName,
             email,
-            password,
+            password: ',,,,,',
         });
 
-        const isFalse: boolean = false;
-        if (isFalse) next();
+        try {
+            const response = await this.userService.create({
+                firstName,
+                lastName,
+                email,
+                password,
+            });
 
-        res.status(201).json({ id: response.id });
+            this.logger.info('User created successfully', {
+                userId: response.id,
+            });
+
+            res.status(201).json({ id: response.id });
+        } catch (err) {
+            next(err);
+            return;
+        }
     }
 }
