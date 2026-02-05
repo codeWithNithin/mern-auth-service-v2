@@ -1,8 +1,28 @@
 import request from 'supertest';
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import app from '../../src/app';
+import { DataSource } from 'typeorm';
+import { AppDataSource } from '../../src/config/data-source';
+import { User } from '../../src/entity/User';
+import { truncateTables } from '../utils';
 
 describe('POST /auth/register', () => {
+    let connection: DataSource;
+
+    beforeAll(async () => {
+        connection = await AppDataSource.initialize();
+    });
+
+    beforeEach(async () => {
+        // if(connection.isInitialized) await truncateTables(connection)
+        await connection.dropDatabase();
+        await connection.synchronize();
+    });
+
+    afterAll(async () => {
+        if (connection.isInitialized) await connection.destroy();
+    });
+
     describe('given all fields', () => {
         it('should return 201 status code', async () => {
             //   ARRANGE
@@ -54,6 +74,13 @@ describe('POST /auth/register', () => {
                 .send(userData);
 
             // ASSERT
+            const userRepo = connection.getRepository(User);
+            const users = await userRepo.find();
+            console.log(users);
+            expect(users).toHaveLength(1);
+            expect(users[0].firstName).toBe(userData.firstName);
+            expect(users[0].lastName).toBe(userData.lastName);
+            expect(users[0].email).toBe(userData.email);
         });
     });
 

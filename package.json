@@ -15,7 +15,7 @@
     "type": "module",
     "main": "index.js",
     "scripts": {
-        "dev": "cross-env NODE_ENV=dev nodemon tsx watch src/server.ts",
+        "dev": "cross-env NODE_ENV=dev tsx watch src/server.ts",
         "start": "node dist/server.js",
         "format:fix": "prettier . --write",
         "format:check": "prettier . --check",
