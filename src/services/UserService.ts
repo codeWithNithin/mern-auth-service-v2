@@ -45,4 +45,18 @@ export default class UserService {
             throw err;
         }
     }
+
+    async findByEmail(email: string) {
+        return await this.userRepository.findOne({
+            where: { email },
+            select: [
+                'id',
+                'firstName',
+                'lastName',
+                'email',
+                'password',
+                'role',
+            ],
+        });
+    }
 }

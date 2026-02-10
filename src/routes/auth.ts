@@ -12,6 +12,8 @@ import logger from '../config/logger.js';
 import registerValidator from '../validators/registerValidator.js';
 import { RefreshToken } from '../entity/RefreshToken.js';
 import { TokenService } from '../services/TokenService.js';
+import loginValidator from '../validators/loginValidator.js';
+import CredentialService from '../services/CredentialService.js';
 
 const router = Router();
 
@@ -20,11 +22,12 @@ const responseTokenRepo = AppDataSource.getRepository(RefreshToken);
 
 const userService = new UserService(userRepo);
 const tokenServie = new TokenService(responseTokenRepo);
+const credentialService = new CredentialService();
 const authController = new AuthController(
     userService,
     logger,
-    responseTokenRepo,
     tokenServie,
+    credentialService,
 );
 
 /**
@@ -32,14 +35,23 @@ const authController = new AuthController(
  * @returns 201 with user id
  * @access public
  */
-
-console.log('flow reached auth router');
-
 router.post(
     '/register',
     registerValidator,
     (req: Request, res: Response, next: NextFunction) =>
         authController.register(req, res, next),
+);
+
+/**
+ * @path POST /auth/login
+ * @returns 200 with user id
+ * @access public
+ */
+router.post(
+    '/login',
+    loginValidator,
+    (req: Request, res: Response, next: NextFunction) =>
+        authController.login(req, res, next),
 );
 
 export default router;
