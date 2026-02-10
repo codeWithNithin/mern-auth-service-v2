@@ -32,6 +32,9 @@ const authController = new AuthController(
  * @returns 201 with user id
  * @access public
  */
+
+console.log('flow reached auth router');
+
 router.post(
     '/register',
     registerValidator,

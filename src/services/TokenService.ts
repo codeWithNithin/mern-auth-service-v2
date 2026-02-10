@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from 'fs';
+import path from 'path';
 import jwt, { type JwtPayload } from 'jsonwebtoken';
 import type { Repository } from 'typeorm';
 import type { RefreshToken } from '../entity/RefreshToken.js';
@@ -15,7 +15,7 @@ export class TokenService {
 
         try {
             privateKey = fs.readFileSync(
-                path.join(__dirname, '../../certs/private.pem'),
+                path.resolve(process.cwd(), 'certs/private.pem'),
             );
         } catch {
             const error = createHttpError(

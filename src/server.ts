@@ -16,6 +16,7 @@ const startServer = async () => {
         });
     } catch (err: unknown) {
         if (err instanceof Error) {
+            console.log(err);
             logger.error(err.message);
             setTimeout(() => {
                 process.exit(1);
