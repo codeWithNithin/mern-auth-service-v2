@@ -33,9 +33,8 @@ export const Config = {
     DB_USERNAME: requiredEnv('DB_USERNAME'),
     DB_PASSWORD: requiredEnv('DB_PASSWORD'),
     DB_NAME: requiredEnv('DB_NAME'),
-    // REFRESH_TOKEN_SECRET: requiredEnv('REFRESH_TOKEN_SECRET'),
+    REFRESH_TOKEN_SECRET: requiredEnv('REFRESH_TOKEN_SECRET'),
     // JWKS_URI: requiredEnv('JWKS_URI'),
-    // PRIVATE_KEY: requiredEnv('PRIVATE_KEY'),
     // DB_SSL: requiredEnv('DB_SSL'),
     // ADMIN_UI: requiredEnv('ADMIN_UI')
 };

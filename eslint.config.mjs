@@ -29,6 +29,7 @@ export default defineConfig(
             'tsconfig.vitest.json',
             '*.spec.ts',
             'tests',
+            'scripts'
         ],
     },
 );

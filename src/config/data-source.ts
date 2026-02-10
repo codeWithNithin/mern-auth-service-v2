@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { User } from '../entity/User.js';
 import { Config } from './index.js';
+import { RefreshToken } from '../entity/RefreshToken.js';
 
 export const AppDataSource = new DataSource({
     type: 'postgres',
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
     // because, if any of the entity changes, it will update the database directly.
     synchronize: true,
     logging: false,
-    entities: [User],
+    entities: [User, RefreshToken],
     migrations: [],
     subscribers: [],
 });

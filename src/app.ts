@@ -7,10 +7,12 @@ import express, {
 import logger from './config/logger.js';
 import type { HttpError } from 'http-errors';
 import authRouter from './routes/auth.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 // router middleware
 app.use('/auth', authRouter);
